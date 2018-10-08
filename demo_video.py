@@ -18,6 +18,7 @@ from tqdm import tqdm
 import pandas as pd
 import skvideo
 import skvideo.io
+from shutil import copyfile
 
 
 # find connection in the specified sequence, center 29 is in the position 15
@@ -377,6 +378,7 @@ class VideoProcessorSK(VideoProcessor):
     
 input_path = '/content/Open-Pose-Keras/sample_videos'
 keras_weights_file= '/content/Open-Pose-Keras/model/keras/model.h5'
+copy_to = '/content/drive/My\ Drive/colab_openpose/output_files/'
 
 videos = np.sort([fn for fn in glob.glob(input_path+'/*') if "Labeled" not in fn])
 print('filenames:')
@@ -443,6 +445,8 @@ for ivid,vid in enumerate(videos):
         df.to_pickle(os.path.join(input_path,vname)+'.pkl')
         toc = time.time()
         print ('processing time is %.5f' % (toc - tic))
+    copyfile(os.path.join(input_path,vname + '_openposeLabeled.mp4'), os.path.join(copy_to,vname + '_openposeLabeled.mp4'))
+    copyfile(os.path.join(input_path,vname + '.pkl'), os.path.join(copy_to,vname + '.pkl'))
     
 os.chdir('../')
 
