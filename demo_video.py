@@ -375,8 +375,8 @@ class VideoProcessorSK(VideoProcessor):
 
 
     
-input_path = './video_data'
-keras_weights_file='./model/keras/model.h5'
+input_path = '/content/Open-Pose-Keras/sample_videos'
+keras_weights_file= '/content/Open-Pose-Keras/model/keras/model.h5'
 
 videos = np.sort([fn for fn in glob.glob(input_path+'/*') if "Labeled" not in fn])
 print('filenames:')
