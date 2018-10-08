@@ -389,7 +389,7 @@ print('start processing...')
 model = get_testing_model(np_branch1=38, np_branch2=19, stages = 6)
 model.load_weights(keras_weights_file)
 # load config
-params, model_params = config_reader()
+params, model_params = config_reader_colab()
 
 # os.chdir(input_path)
 for ivid,vid in enumerate(videos):
