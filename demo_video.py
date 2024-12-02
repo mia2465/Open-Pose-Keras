@@ -347,6 +347,8 @@ class VideoProcessorSK(VideoProcessor):
         super(VideoProcessorSK, self).__init__(*args, **kwargs)
     
     def get_video(self):
+         np.float = np.float64
+         np.int = np.int_
          return skvideo.io.FFmpegReader(self.fname)
         
     def get_info(self):
@@ -433,7 +435,8 @@ for ivid,vid in enumerate(videos):
                 output_dict.update({'video':vname, 'frame':index})
                 # convert to df
                 output_df = pd.DataFrame(pd.Series(output_dict)).transpose()
-                df = df.append(output_df)
+                df = pd.concat([df,output_df])
+                #df = df.append(output_df)
                 clip.save_frame(frame)
                 #save in json
 
